@@ -5,11 +5,11 @@ www.antp.be/software/moviecatalog/
 
 [Infos]
 Authors=FypeR , Karagarga, Tiu Fang(base)
-Title=Beyazperde 2013 Mart
+Title=Beyazperde 2013 Eylül
 Description=BeyazPerde den film ile ilgili bilgi ve mini resim alýr.
 Site=http://www.beyazperde.com
 Language=TR
-Version=v4.07
+Version=v4.09
 Requires=3.5.0
 Comments=Ýstek ve öneriler için uuv9esg02@sneakemail.com  irtibata geçiniz.
 License=This program is free software; you can redistribute it and/or modify it under the  terms of the GNU General Public License as published by the Free Software Foundation;  either version 2 of the License, or (at your option) any later version. |
@@ -20,15 +20,18 @@ RequiresMovies=1
 AramaMiktar=1|1|0=Arama Sonuçlarýnýn ilk sayfasýný listeler|1=Arama Sonuçlarýnýn varsa 2 sayfasýný getirir.|2=Arama Sonuçlarýnýn varsa 5 sayfasýný getirir.|3=Arama Sonuçlarýnýn varsa 10 sayfasýný getirir.|4=Arama Sonuçlarýnýn varsa 20 sayfasýný getirir.
 Tanekle=1|1|0=Hazýrda varolan filmin tanýmý temizler ve beyazperde içindeki tanýmý ekler|1=Hazýrda var olan tanýmý beyazperde tanýmýnýn arkasýna ekler
 Gos_tar=2|2|0=Gosterim tarihi bilgisini alma|1=GT. bilgisini al ve eklenme tarih alanýna yaz + eklenme tarihini de konunun ardýna ekle|2=G.T. bilgisini al ve konu kýsmýna ekle(sondan)|3=GT. bilgisini al eklenme tarihi bilgisi ile deðiþtir.
-Oyuncular=1|1|1=Film Anasayfasýndakileri al|2=Oyuncular sayfasýndan al Oyuncu(Rol)|3=Oyuncular sayfasýndan sadece oyuncu
-PuanSecim=2|2|0=Puan olarak Beyazperde Puanýný kullan|1=Basýn puanýný kullan|2=Üye puanlamalarýný kullan
+Oyuncular=2|1|1=Film Anasayfasýndakileri al|2=Oyuncular sayfasýndan al Oyuncu(Rol)|3=Oyuncular sayfasýndan sadece oyuncu
+PuanSecim=0|2|0=Puan olarak Beyazperde Puanýný kullan|1=Basýn puanýný kullan|2=Üye puanlamalarýný kullan
 NoktaliAra=1|1|1=Arama kutusunda isim içindeki noktalarý temizle|2=Temizlik yok
-BuyukPoster=1|1|1=Ana Sayfasýndaki küçük Resim|2=Büyük boyutlu resim
+BuyukPoster=2|1|1=Ana Sayfasýndaki küçük Resim|2=Büyük boyutlu resim
 
 [Parameters]
 
 ***************************************************)
 
+//FypeR 07.09.2013 4.09
+// özet içindeki gereksiz veri düzeltildi.
+// orjinal ismi bulmadaki sorun giderildi
 //FypeR 111.06.2013 4.08
 //özet içindeki ü,ç, ö için düzeltici
 //FypeR 08.03.2013 4.07
@@ -195,7 +198,7 @@ LineNr:=FindLine('class="tt_r26 j_enti' ,Page,0);
 if(LineNr>0) then
 begin
 
-  Line:=Page.GetString(LineNr+4);
+  Line:=Page.GetString(LineNr+3);
   Value:=UTF8Decode(Line); //türkçe isim olabilir. ama orjinal isim yok ise bu orjinaldir
   SetField(fieldOriginalTitle,Value);
   BeginPos:=LineNr;
@@ -324,7 +327,7 @@ begin
    HtmlRemoveTags(Line);
    Value:=UTF8Decode(Line);
    Value:=TurkceDuzelt(Value);
-
+   Value:=StringReplace( Value,'&nbsp;',' ');
    
   case getOption('Tanekle') of
 
