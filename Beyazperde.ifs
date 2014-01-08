@@ -5,11 +5,11 @@ www.antp.be/software/moviecatalog/
 
 [Infos]
 Authors=FypeR , Karagarga, Tiu Fang(base)
-Title=Beyazperde 2013 Eylül
+Title=Beyazperde 2014 ocak
 Description=BeyazPerde den film ile ilgili bilgi ve mini resim alýr.
 Site=http://www.beyazperde.com
 Language=TR
-Version=v4.09
+Version=v4.10
 Requires=3.5.0
 Comments=Ýstek ve öneriler için uuv9esg02@sneakemail.com  irtibata geçiniz.
 License=This program is free software; you can redistribute it and/or modify it under the  terms of the GNU General Public License as published by the Free Software Foundation;  either version 2 of the License, or (at your option) any later version. |
@@ -259,7 +259,7 @@ UTF8Coded:=UTF8Encode('Yönetmen');
 LineNr:= FindLine(UTF8Coded,Page,LineNr);
 if(LineNr>0) then
 begin
-  Line:=Page.Getstring(LineNr+2);
+  Line:=Page.Getstring(LineNr+4);
   HtmlRemoveTags(Line);
   Value:=UTF8DEcode(Line);
   setfield(fieldDirector,Value);
@@ -275,7 +275,7 @@ LineNr:=FindLine(UTF8Encode('Tür'),Page,LineNr);
 if(LineNr>0) then
 begin
 
-      LineNr:=LineNr+2;
+      LineNr:=LineNr+4;
       Line:=Page.GetString(LineNr);
 
       while(pos('span class="acLnk',Line)>0)  do
@@ -296,11 +296,11 @@ end;
 // Ülke
 LineNr:=0;
 Value:='';
-LineNr:=FindLine(UTF8Encode('Ülke</span>'),Page,LineNr);
+LineNr:=FindLine(UTF8Encode('Ülke'),Page,LineNr);
 if(LineNr>0) then
 begin
 
-      LineNr:=LineNr+2;
+      LineNr:=LineNr+4;
       Line:=Page.GetString(LineNr);
       while(pos('span class="acLnk',Line)>0)  do
       begin
@@ -341,11 +341,11 @@ end;
 //gösterim Tarihi
 Value:='';
 LineNr:=0;
-UTF8Coded:=UTF8Encode('Vizyon Tarihi </span>');
+UTF8Coded:=UTF8Encode('Vizyon Tarihi');
 LineNr:= FindLine(UTF8Coded,Page,LineNr);
 if(LineNr>0) then
 begin
-  Line:=Page.GetString(LineNr+3);
+  Line:=Page.GetString(LineNr+5);
   HtmlRemoveTags(Line);
   Line:=StringReplace(Line,UTF8Coded,'');
   Value2:=UTF8DEcode(Line);
@@ -446,7 +446,7 @@ LineNr:=0;
   end;
   2:
   begin //üyeler
-    LineNr:=FindLine(UTF8Encode('Üyeler'),Page,LineNr);
+    LineNr:=FindLine(UTF8Encode('Kullanýcý'),Page,LineNr);
    if(LineNr>0) then
     begin
      Line:=Page.GetString(LineNr+4);
