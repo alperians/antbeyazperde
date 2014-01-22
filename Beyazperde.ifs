@@ -29,6 +29,8 @@ BuyukPoster=2|1|1=Ana Sayfasýndaki küçük Resim|2=Büyük boyutlu resim
 
 ***************************************************)
 
+//FypeR 22.01.2014 4.10
+//deðiþen beyazperde sayfa yapýsý için güncellemeler
 //FypeR 07.09.2013 4.09
 // özet içindeki gereksiz veri düzeltildi.
 // orjinal ismi bulmadaki sorun giderildi
@@ -394,7 +396,7 @@ end;
 
 //puan al
 LineNr:=0;
-   LineNr:=FindLine(UTF8Encode('/list_item_p2v'),Page,LineNr);
+   LineNr:=FindLine(UTF8Encode('Ülke'),Page,LineNr);
     if(LineNr>0) then
     begin
     
@@ -405,7 +407,7 @@ LineNr:=0;
     LineNr:=FindLine(UTF8Encode('Beyazperde'),Page,LineNr);
     if(LineNr>0) then
     begin
-     Line:=Page.GetString(LineNr+4);
+     Line:=Page.GetString(LineNr+5);
     end
     
     HtmlRemoveTags(Line);
@@ -427,7 +429,7 @@ LineNr:=0;
 
    if(LineNr>0) then
     begin
-     Line:=Page.GetString(LineNr+4);
+     Line:=Page.GetString(LineNr+5);
     end
 
     HtmlRemoveTags(Line);
@@ -449,7 +451,7 @@ LineNr:=0;
     LineNr:=FindLine(UTF8Encode('Kullanýcý'),Page,LineNr);
    if(LineNr>0) then
     begin
-     Line:=Page.GetString(LineNr+4);
+     Line:=Page.GetString(LineNr+5);
     end
 
     HtmlRemoveTags(Line);
@@ -498,7 +500,7 @@ Value2:='';
 case getoption('Oyuncular') of
   1:
   begin
-    LineNr:=FindLine('Oyuncular: </span>',Page,LineNr);
+    LineNr:=FindLine('Oyuncular:',Page,LineNr);
     if(LineNr>0) then
     begin
       Line:=page.getstring(LineNr+2);
@@ -514,8 +516,8 @@ case getoption('Oyuncular') of
   3:
   begin
     Alper:='';
-    LineNr:=FindLine('Oyuncular: </span>',Page,LineNr);
-    Value2:=page.getstring(LineNr+4);
+    LineNr:=FindLine('Oyuncular:',Page,LineNr);
+    Value2:=page.getstring(LineNr+5);
     BeginPos:=pos(UTF8Encode('evamý...'),Value2);
     if(BeginPos>0) then
     begin
